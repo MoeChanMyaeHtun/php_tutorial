@@ -1,6 +1,6 @@
 <?php
 
-$dob = new DateTime($_GET['dob']);
+$dob = new DateTime($_POST['dob']);
 $today   = new DateTime('today');
 $year = $dob->diff($today)->y;
 ?>
@@ -13,9 +13,9 @@ $year = $dob->diff($today)->y;
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="get">
+    <form action="" method="POST">
         <label for="">Birthday</label>
-        <input type="text" name="dob"><br>
+        <input type="date" name="dob"><input type="submit"><br>
         <?php echo "<label>age=$year </label>";?> 
     </form>
 </body>
