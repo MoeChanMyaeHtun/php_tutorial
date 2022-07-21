@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.form{
+    background-color: #e8c8c8;
+    width:1000px;
+    margin: 0 auto;
+    
+}
+h1{
+    text-align: center;
+    padding-top: 10px ;
+}
+.box{
+    background-color: aliceblue;
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px 10px;
+}
