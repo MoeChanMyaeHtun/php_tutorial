@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+h1{
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0;
+}
+.sec-mv{
+    width: 700px;
+    border:1px solid  #7d8080;
+    margin: 0 auto;
+}
+.form {
+    float: left;
+    width: 500px;
+    border-right: 1px solid #7d8080;
+    padding: 70px 0 70px 20px;
+    
+}
+.email{
+    margin:0 10px 0 20px;
+    padding: 5px 0;
+    width: 200px;
+    
+}
+.btn{
+    background-color: #7d8080;
+    width: 100px;
+    border: 1px solid #7d8080;
+    color: #ffffff;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+.btn:hover{
+    background-color: #ffffff; 
+    color: #7d8080;
+}
+.QR{
+    /* border: 1px solid #7d8080; */
+    width:150px;
+    float: left;
+}
