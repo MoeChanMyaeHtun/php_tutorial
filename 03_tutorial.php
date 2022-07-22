@@ -1,8 +1,11 @@
 <?php
 
-$dob = new DateTime($_POST['dob']);
-$today   = new DateTime('today');
-$year = $dob->diff($today)->y;
+if( isset($_POST['submit']) ){
+    $dob   =  new DateTime ($_POST['dob']);
+    $today= new DateTime('today');
+   
+}
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +18,15 @@ $year = $dob->diff($today)->y;
 <body>
     <form action="" method="POST">
         <label for="">Birthday</label>
-        <input type="date" name="dob"><input type="submit"><br>
-        <?php echo "<label>age=$year </label>";?> 
+        <input type="date" name="dob"><input type="submit" name="submit"><br>
+        <?php  if($dob > $today){
+       echo "Invalid Date of Birth.";
+    }else{
+        $year = $dob->diff($today)->y;
+        echo "<label>age=$year </label>";
+    }?>
+       
+
     </form>
 </body>
 </html>
