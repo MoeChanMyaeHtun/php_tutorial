@@ -6,8 +6,8 @@ include 'vendor/autoload.php';
 
 $result = '';
 
-if (isset($_POST['email']) && !empty($_POST['email'])) {
-    $result = (new QRCode())->render($_POST['email']);
+if (isset($_POST['txet']) && !empty($_POST['txet'])) {
+    $result = (new QRCode())->render($_POST['txet']);
 }
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
     <section class="sec-mv clearfix">
         <form action="index.php" method="POST" class="form">
             <label for="">Content:</label>
-            <input type="email" name='email' class="email" placeholder="Enter your gmail">
+            <input type="txet" name='txet' class="email">
             <input type="submit" class="btn">
         </form>
         <div class="QR">
