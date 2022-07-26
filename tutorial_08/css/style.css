@@ -68,3 +68,21 @@ form{
 .alert{
     color:red;
 }
+.sec-table{
+    width: 1000px;
+    margin: 0 auto;
+}
+.sec-table table{
+    border: 1px solid black;
+    background-color: white;
+
+}
+.sec-table table tr .col{
+    width: 200px;
+    padding: 5px 0;
+    border: 1px solid black;
+    text-align: center;
+}
+.sec-table table tr .col1{
+    padding: 10px 0;
+}

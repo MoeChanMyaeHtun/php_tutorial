@@ -1,14 +1,9 @@
 <?php
-session_start();
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', 'moechan');
-define('DB_NAME', 'tutorial_08');
-define('DB_PORT', '3306');
 
-$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+
 
 if (isset($_POST['confirm'])) {
+	include "db_conn.php";
 	$user_name = $_POST['name'];
 	$age = $_POST['age'];
 	$phone = $_POST['phone'];
@@ -31,17 +26,13 @@ if (isset($_POST['confirm'])) {
 			unset($errors[$key]);
 		}
 	}
+	$sql = "INSERT INTO employee.register (Emp_name,Age,Phone,Address) VALUES ('$user_name','$age','$phone','$address')";
 
 
-	if(count($errors) == 0) {
-		$sql = "INSERT INTO `register` (`name`,`age`,`phone`,`address`)VALUES('$user_name','$age','$phone','$address')";
-		$result = mysqli_query($conn, $sql);
-		if($result) {
-			header("location:home.php");
-		}
-	}
-	
-	
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            header("Location: home.php?successfully created");
+        } 	
 
 }
 
@@ -60,7 +51,9 @@ if (isset($_POST['confirm'])) {
 
 <body>
 	<h1>Employee Register</h1>
-	<form action="home.php" method="post">
+	<form action="" method="post" enctype = "multipart/form-data">
+	<input type="hidden" name="id" >
+
 		<div class="box clearfix"><label for="">Name</label>
 		<div class="R-blk clearfix" >
 			<input type="text" name="name"  class="txt" value="<?php echo isset($user_name)?$user_name:'' ?>"><br>
@@ -84,7 +77,7 @@ if (isset($_POST['confirm'])) {
 			<span class="alert"><?php echo isset($errors['address']) ? $errors['address']:''; ?></span>
 		</div>
 		</div>
-		<div class="box clearfix"><label for=""></label><div class="R-blk clearfix" ><input type="submit" value="Confirm" name="confirm" class="btn1"><input type="reset" value="Reset" class="btn2"></div></div>
+		<div class="box clearfix"><label for=""></label><div class="R-blk clearfix" ><input type="submit" value="Confirm" name="confirm" class="btn1"></div></div>
 	</form>
 </body>
 
