@@ -37,6 +37,6 @@ require "phpspreadsheet/vendor/autoload.php";
 		echo '</table>';
 		?> 
 	</section>
-
+	
 </body>
 </html>
