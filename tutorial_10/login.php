@@ -35,7 +35,7 @@ if (isset($_POST['login'])) {
     <form action=" " method="POST">
      <input type="email" name="email" placeholder="@gmial.com" >
      <input type="password" name="password" placeholder="password" >
-     <p class="txt"><a href="forget.php" > Forgot Password</a> </p>
+     <p class="txt"><a href="register.php" class="sign" > Sign up</a> <a href="forgot.php" > Forgot Password</a> </p>
     <input type="submit" value="Login" name="login" class="btn">
     </form>
 </div>

@@ -23,12 +23,13 @@ if (isset($_POST['submit'])) {
     if ($pw == '') {
         $errors['password'] = 'This field could not not be empty';
     } 
+    
     foreach ($errors as $key => $value) {
         if (empty($value)) {
             unset($errors[$key]);
         }
     }
-    $sql = "INSERT INTO tuto_10.users (`user`,`email`,`password`) VALUES ('$name','$email','$password')";
+    $sql = "INSERT INTO tuto_10.users (`user`,`email`,`password`) VALUES ('$name','$email','$pw')";
 
 
     $result = mysqli_query($conn, $sql);
