@@ -23,7 +23,7 @@
         }
 
      if (count($errors) == 0) {
-      $sql="UPDATE tuto_10.users SET `password`='$pw'";
+      $sql="UPDATE tuto_10.users SET `password`='$pw' WHERE `email` ='$email";
         $result=mysqli_query($conn,$sql);
         header("location:login.php");
       }
