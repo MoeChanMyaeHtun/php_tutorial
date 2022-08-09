@@ -5,25 +5,16 @@
         <div class="col-12">
             <a href="{{ route('user.create') }}" class="btn btn-primary">Create</a>
             <a href="{{ route('user.export') }}" class="btn btn-primary">Export User</a>
-           
 
         </div>
-        <div class="col-12 mt-2 mb-2">
-             <form action="{ route('user.mail') }}" method="get">
-             @csrf
-                <input type="email" name="mail" id="">
-                <button type="submit" class="btn btn-dark">Send</button>
-            </form>
-        </div>
-        <div class="col-12 mt-2">
+        <div class="col-12">
             <form action="{{ route('user.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="file" class="form-control" id="user_data" name="file">
-                <button class="btn btn-primary mt-2">Import User</button>
+                <button class="btn btn-primary">Import User</button>
             </form>
 
             <form action="{{ route('user.search') }}" class="mt-2" method="get">
-            @csrf
 				<div class="form-row">
 					<div class="form-group col">
 						<label>Name</label>

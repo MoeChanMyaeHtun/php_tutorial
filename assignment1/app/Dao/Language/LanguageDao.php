@@ -13,49 +13,44 @@ use App\Contracts\Dao\Language\LanguageDaoInterface;
  */
 class LanguageDao implements LanguageDaoInterface
 {
+
   public function getLanguageList()
   {
-    $languages = Language::all();
-    return $languages;
+    $language = Language::orderBy('created_at', 'asc')->get();
+    return $language;
   }
 
-
-  public function create() {
-
+  public function saveLanguage(Request $request)
+  {
+    $language= new Language();
+    $language->lang_name= $request['name'];
+    $language->save() ;
+    return $language;
   }
 
-  public function store($request) {
-    $request->validate([
-      'language_name'=>'required',
-      'id'=>'required'
+  public function getLanguageById($id)
+ {
+    $language = Language::find($id);
+    return $language;
+ }
+ public function updateLanguageById(Request $request ,$id)
+ {
+  $langauge=  Language::find($id);
+  $langauge->lang_name= $request['name'];
+  
+  $langauge->save() ;
+  return $langauge;
+ }
 
-    ]);
-    Language::create([
-        'Language_name'=>$request->input('Language_name'),
-        // 'id'=>$request->input('Language_id')
-    ]);
-  }
+ public function deleteLanguageById($id)
+ {
+    $language = Language::find($id);
+    $language->delete();
+ }
 
-  public function show($id) {
-    $languages = Language::find($id);
-    return $languages;
-  }
-
-  public function update(Request $request, $id) {
-    $request->validate([
-      'Language_name'=>'required',
-      'id'=>'required'
-  ]);
-
-  Language::find($id)->update([
-      'Language_name'=>$request->input('Language_name'),
-      'Language_id'=>$request->input('Language_id')
-  ]);
-  }
-
-  public function destroy($id) {
-    $user = Language::destroy($id);
-    return $user;
-  }
+  // public function destroy($id) {
+  //   $user = Language::destroy($id);
+  //   return $user;
+  // }
 
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Language;
 
+
+use App\Models\Language;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\Services\Language\LanguageServiceInterface;
@@ -11,51 +13,45 @@ use App\Contracts\Services\Language\LanguageServiceInterface;
 class LanguageController extends Controller
 {
       
-    private $languageInterface;
-    /**
-     * Create a new controller instance.
-     * @param LanguageServiceInterface $languageServiceInterface
-     * @return void
-     */
-    public function __construct(LanguageServiceInterface $languageServiceInterface)
+        private $languageInterface;
+
+    public function __construct(LanguageServiceInterface $languageInterface)
     {
-        
-        $this->languageInterface = $languageServiceInterface;
+        $this->languageInterface = $languageInterface;
+    }
+    public function showLanguageList()
+    {
+        $languages=  $this->languageInterface->getLanguageList();
+        return view('language.index', compact('languages'));
+    }
+     
+    public function showCreateLanguageView()
+    {
+        $languages = Language::all();
+        return view('language.create', compact('languages'));
+    }
+   
+    public function submitCreateLanguageView(Request $request)
+    {
+        $language = $this->languageInterface->saveLanguage($request);
+        return redirect()->route('language.index');
     }
 
-    public function index() {
-
-        $language = $this->languageInterface->getLanguageList();
-        return view('language.index',['language'=>$language]);
+    public function showEditLanguageView($id)
+    {
+        $language=$this->languageInterface->getLanguageById($id);
+        return view('language.edit' , compact('language' ));
     }
 
-    public function create(){
-        return view('language.create');
-    }
-    
-    public function store(Request $request) {
-        
-        $language= $this->languageInterface->store($request);
-        return redirect()->back()->with('status', "language Created Successfully");
-       
-    }
-    
-    public function show($id) {
-
-        $language = $this->languageInterface->show($id);
-        return view('language.edit', ['language'=>$language]);
+    public function submitEditLanguageView(Request $request , $id){
+        $language = $this->languageInterface->updateLanguageById($request,$id);
+        return redirect()->route('language.index');
     }
 
-    public function update(Request $request, $id) {
-        
-        $language= $this->languageInterface->update($request, $id);
-        return redirect('language/index')->with('status', "language Updated Successfully");
-    }
-
-    public function destroy($id) {
-
-        $language= $this->subjectInterface->destroy($id);
-        return redirect()->back()->with('status', "language Deleted Successfully");
+    public function deleteLanguage($id)
+    {
+        $language = $this->languageInterface->deleteLanguageById($id);
+        return back();
     }
 
    

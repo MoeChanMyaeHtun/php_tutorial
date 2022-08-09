@@ -10,14 +10,12 @@ interface LanguageServiceInterface
 
   public function getLanguageList();
 
-  public function create();
+  public function saveLanguage(Request $request);
 
-  public function store(Request $request);
-
-  public function show($id);
-
-  public function update(Request $request, $id);
-
-  public function destroy($id);
+  public function getLanguageById($id);
+ 
+  public function updateLanguageById(Request $request , $id);
+ 
+  public function deleteLanguageById($id);
   
 }

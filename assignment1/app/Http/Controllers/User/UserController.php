@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\User;
+use App\Models\User;
+use App\Mail\SendMail;
 use App\Models\Language;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Contracts\Services\User\UserServiceInterface;
 
@@ -21,6 +24,11 @@ class UserController extends Controller
     {
         $users=  $this->userInterface->getUserList();
         return view('user.index', compact('users'));
+    }
+    public function searchUsers(Request $request)
+    {
+      $users = $this->userInterface->searchUsers($request);
+      return view('user.search' ,compact('users') );
     }
      
     public function showCreateUserView()
@@ -62,5 +70,17 @@ class UserController extends Controller
     {
          Excel::import(new UsersImport, $request->file);
          return redirect()->route('user.index');
+    }
+
+    public function mailUsers()
+    {
+      $user = User::find(1)->toArray();
+      
+      Mail::send('mail', $user, function($message) use ($user) {
+          $message->to($user['email']);
+          $message->subject('Welcome Mail');
+      });
+      return redirect()->route('user.mail');
+      
     }
 }

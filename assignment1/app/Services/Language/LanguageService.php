@@ -2,14 +2,13 @@
 
 namespace App\Services\Language;
 
+use Illuminate\Http\Request;
 use App\Contracts\Dao\Language\LanguageDaoInterface;
 use App\Contracts\Services\Language\LanguageServiceInterface;
-use Illuminate\Http\Request;
 
 
 class LanguageService implements LanguageServiceInterface
-{
- 
+ {
   private $languageDao;
   /**
    * Class Constructor
@@ -18,7 +17,7 @@ class LanguageService implements LanguageServiceInterface
    */
   public function __construct(LanguageDaoInterface $languageDao)
   {
-    $this->languageDao = $languageDao;
+    $this->languagerDao = $languageDao;
   }
  
   public function getLanguageList()
@@ -26,29 +25,24 @@ class LanguageService implements LanguageServiceInterface
     return $this->languageDao->getLanguageList();
   }
 
-  public function create() 
+ 
+  public function saveLanguage(Request $request)
   {
-    return $this->langaugeDao->create();
+   return $this->languageDao->saveLanguage($request);
   }
 
-  public function store(Request $request) 
-  {
-    return $this->LanguageDao->store($request);
-  }
+ public function getLanguageById($id)
+ {
+  return $this->languageDao->getLanguageById($id);
+ }
 
-  public function show($id) 
-  {
-    return $this->languageDao->show($id);
-  }
+ public function updateLanguageById(Request $request , $id)
+ {
+  return $this->languageDao->updateLanguageById($request , $id);
+ }
 
-  public function update(Request $request, $id) 
-  {
-    return $this->languageDao->update($request, $id);
-  }
-
-  public function destroy($id) 
-  {
-    return $this->languageDao->destroy($id);
-  }
-
+ public function deleteLanguageById($id)
+ {
+  return $this->languageDao->deleteLanguageById($id);
+ }
 }

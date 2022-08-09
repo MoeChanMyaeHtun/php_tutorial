@@ -10,6 +10,8 @@ interface UserDaoInterface
   
   public function getUserList();
 
+  public function searchUsers(Request $request);
+  
   public function saveUser(Request $request);
 
  public function getUserById($id);
@@ -17,4 +19,6 @@ interface UserDaoInterface
  public function updateUserById(Request $request , $id);
 
  public function deleteUserById($id);
+
+ 
 }

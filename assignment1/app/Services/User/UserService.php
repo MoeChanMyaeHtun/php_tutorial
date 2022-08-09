@@ -3,6 +3,7 @@
 namespace App\Services\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Contracts\Dao\User\UserDaoInterface;
 use App\Contracts\Services\User\UserServiceInterface;
 
@@ -11,7 +12,7 @@ use App\Contracts\Services\User\UserServiceInterface;
 
 class UserService implements UserServiceInterface
 {
- 
+
   private $userDao;
   /**
    * Class Constructor
@@ -22,32 +23,35 @@ class UserService implements UserServiceInterface
   {
     $this->userDao = $userDao;
   }
- 
+
   public function getuserList()
   {
     return $this->userDao->getuserList();
   }
-
- 
-  public function saveUser(Request $request)
+  public function searchUsers(Request $request)
   {
-   return $this->userDao->saveUser($request);
+    return $this->userDao->searchUsers($request);
   }
 
- public function getUserById($id)
- {
-  return $this->userDao->getUserById($id);
- }
 
- public function updateUserById(Request $request , $id)
- {
-  return $this->userDao->updateUserById($request , $id);
- }
+  public function saveUser(Request $request)
+  {
+    return $this->userDao->saveUser($request);
+  }
 
- public function deleteUserById($id)
- {
-  return $this->userDao->deleteUserById($id);
- }
+  public function getUserById($id)
+  {
+    return $this->userDao->getUserById($id);
+  }
 
+  public function updateUserById(Request $request, $id)
+  {
+    return $this->userDao->updateUserById($request, $id);
+  }
+
+  public function deleteUserById($id)
+  {
+    return $this->userDao->deleteUserById($id);
+  }
 
 }

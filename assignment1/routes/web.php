@@ -25,4 +25,19 @@ Route::get('/user/delete/{id}','User\UserController@deleteUser')->name('user.del
 
 Route::get('/user/export', 'User\UserController@exportUsers')->name('user.export');
 Route::post('/user/import', 'User\UserController@importUsers')->name('user.import');
+Route::get('/user/search', 'User\UserController@searchUsers')->name('user.search');
+Route::get('/user/mail', [MailController::class, 'mailView'])->name('user.mailView');
+Route::post('/user/send-mail', [MailController::class, 'mailSend'])->name('user.mailSend');
+
+Route::get('/language','Language\LanguageController@showLanguageList')->name('language.index');
+Route::get('/language/create', 'Language\LanguageController@showCreateLanguageView')->name('language.create');
+Route::post('/language/create','Language\LanguageController@submitCreateLanguageView')->name('language.store');
+
+
+Route::get('/language/edit/{id}', 'Language\LanguageController@showEditLanguageView')->name('language.edit');
+Route::post('/language/edit/{id}','Language\LanguageController@submitEditLanguageView')->name('language.update');
+
+Route::get('/language/delete/{id}','Language\LanguageController@deleteLanguage')->name('language.delete');
+
+
 
